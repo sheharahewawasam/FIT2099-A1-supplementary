@@ -3,9 +3,14 @@ package game;
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actors.Actor;
+import edu.monash.fit2099.engine.actors.attributes.BaseActorAttribute;
+import edu.monash.fit2099.engine.actors.attributes.BaseActorAttributes;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.displays.Menu;
+
+import static edu.monash.fit2099.engine.actors.attributes.BaseActorAttributes.HEALTH;
+import static edu.monash.fit2099.engine.actors.attributes.BaseActorAttributes.STAMINA;
 
 /**
  * Class representing the Player.
@@ -25,10 +30,14 @@ public class Player extends Actor {
     public Player(String name, char displayChar, int hitPoints) {
         super(name, displayChar, hitPoints);
         this.addCapability(Status.HOSTILE_TO_ENEMY);
+        this.addAttribute(STAMINA,new BaseActorAttribute(100));
     }
 
     @Override
     public Action playTurn(ActionList actions, Action lastAction, GameMap map, Display display) {
+
+        display.println(this + "\n" + "Hitpoints: "+ this.getAttribute(HEALTH) + "/" + this.getAttributeMaximum(HEALTH));
+        display.println("Stamina: " + this.getAttribute(STAMINA) + "/" + this.getAttributeMaximum(STAMINA));
         // Handle multi-turn Actions
         if (lastAction.getNextAction() != null)
             return lastAction.getNextAction();
