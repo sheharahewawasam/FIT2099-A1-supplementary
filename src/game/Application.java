@@ -24,7 +24,7 @@ public class Application {
         FancyGroundFactory groundFactory = new FancyGroundFactory(new Dirt(),
                 new Wall(), new Floor(), new Puddle());
 
-        List<String> map = Arrays.asList(
+        List<String> abandonedVillage = Arrays.asList(
                 "...........................................................",
                 "...#######.................................................",
                 "...#__.....................................................",
@@ -39,8 +39,8 @@ public class Application {
                 "~~~~~~....................................#..___#..........",
                 "~~~~~~~~~.................................#######..........");
 
-        GameMap gameMap = new GameMap(groundFactory, map);
-        world.addGameMap(gameMap);
+        GameMap abandonedVillageMap = new GameMap(groundFactory, abandonedVillage);
+        world.addGameMap(abandonedVillageMap);
 
         for (String line : FancyMessage.TITLE.split("\n")) {
             new Display().println(line);
@@ -51,10 +51,12 @@ public class Application {
             }
         }
 
-        gameMap.at(23, 10).addActor(new WanderingUndead());
+        abandonedVillageMap.at(23, 10).addActor(new WanderingUndead());
 
         Player player = new Player("The Abstracted One", '@', 150);
-        world.addPlayer(player, gameMap.at(29, 5));
+        world.addPlayer(player, abandonedVillageMap.at(29, 5));
+
+        abandonedVillageMap.at(24,5).addItem(new Broadsword());
 
         world.run();
     }
