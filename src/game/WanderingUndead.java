@@ -7,6 +7,7 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.actors.Behaviour;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
+import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -53,6 +54,10 @@ public class WanderingUndead extends Actor {
             actions.add(new AttackAction(this, direction));
         }
         return actions;
+    }
+    @Override
+    public IntrinsicWeapon getIntrinsicWeapon() {//Enemy damage to player
+        return new IntrinsicWeapon(30, "kicks", 50);// public IntrinsicWeapon(int damage, String verb, int hit rate(accuracy))
     }
 
 }
