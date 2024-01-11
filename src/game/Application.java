@@ -42,6 +42,33 @@ public class Application {
         GameMap abandonedVillageMap = new GameMap(groundFactory, abandonedVillage);
         world.addGameMap(abandonedVillageMap);
 
+        // Create a new GameMap for the Burial Ground
+        FancyGroundFactory burialGroundFactory = new FancyGroundFactory(new Dirt(), new Wall(), new Floor(), new Puddle(), new Void());
+
+        List<String> burialGround = Arrays.asList(
+                // Define the layout for the Burial Ground map
+                "...........+++++++........~~~~~~++....~~",
+                "...........++++++.........~~~~~~+.....~~",
+                "............++++...........~~~~~......++",
+                "............+.+.............~~~.......++",
+                "..........++~~~.......................++",
+                ".........+++~~~....#######...........+++",
+                ".........++++~.....#_____#.........+++++",
+                "..........+++......#_____#........++++++",
+                "..........+++......###_###.......~~+++++",
+                "..........~~.....................~~...++",
+                "..........~~~..................++.......",
+                "...........~~....~~~~~.........++.......",
+                "......~~....++..~~~~~~~~~~~......~......",
+                "....+~~~~..++++++++~~~~~~~~~....~~~.....",
+                "....+~~~~..++++++++~~~..~~~~~..~~~~~...."
+        );
+
+        GameMap burialGroundMap = new GameMap(burialGroundFactory, burialGround);
+
+        // Add the Burial Ground map to the world
+        world.addGameMap(burialGroundMap);
+
         for (String line : FancyMessage.TITLE.split("\n")) {
             new Display().println(line);
             try {
