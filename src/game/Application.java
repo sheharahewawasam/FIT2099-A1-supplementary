@@ -22,7 +22,7 @@ public class Application {
         World world = new World(new Display());
 
         FancyGroundFactory groundFactory = new FancyGroundFactory(new Dirt(),
-                new Wall(), new Floor(), new Puddle());
+                new Wall(), new Floor(), new Puddle(), new Void());
 
         List<String> abandonedVillage = Arrays.asList(
                 "...........................................................",
@@ -57,6 +57,11 @@ public class Application {
         world.addPlayer(player, abandonedVillageMap.at(29, 5));
 
         abandonedVillageMap.at(24,5).addItem(new Broadsword());
+
+        graveyard graveyard1 = new graveyard();
+        graveyard graveyard2 = new graveyard();
+        abandonedVillageMap.at(35, 0).setGround(graveyard1);
+        abandonedVillageMap.at(31, 11).setGround(graveyard2);
 
         world.run();
     }
