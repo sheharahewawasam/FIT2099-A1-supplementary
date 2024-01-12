@@ -7,6 +7,14 @@ import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.FancyGroundFactory;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.World;
+import game.Weapons.Broadsword;
+import game.actors.Player;
+import game.actors.WanderingUndead;
+import game.display.FancyMessage;
+import game.gorund.*;
+import game.gorund.Void;
+import game.items.LockedGate;
+import game.items.LockedGateBG;
 
 /**
  * The main class to start the game.
@@ -22,7 +30,7 @@ public class Application {
         World world = new World(new Display());
 
         FancyGroundFactory groundFactory = new FancyGroundFactory(new Dirt(),
-                new Wall(), new Floor(), new Puddle(), new Void());
+                new Wall(), new Floor(), new Puddle(), new game.gorund.Void());
 
         List<String> abandonedVillage = Arrays.asList(
                 "...........................................................",
@@ -74,6 +82,7 @@ public class Application {
         abandonedVillageMap.at(29, 0).setGround(lockedGate1);//the x and y labels set for the gate to be implemented in map of abandonedVillageMap
         burialGroundMap.at(19, 0).setGround(lockedGate2);///the x and y labels set for the gate to be implemented in map of burialGroundMap
 
+        // Display the game title with fancy messages
         for (String line : FancyMessage.TITLE.split("\n")) {
             new Display().println(line);
             try {
@@ -84,10 +93,10 @@ public class Application {
         }
 
         abandonedVillageMap.at(23, 10).addActor(new WanderingUndead());
-
+        // Create and add the player to the Abandoned Village map
         Player player = new Player("The Abstracted One", '@', 150);
         world.addPlayer(player, abandonedVillageMap.at(29, 5));
-
+        // adding the Broadsword to the Abandoned Village map
         abandonedVillageMap.at(24,5).addItem(new Broadsword());
 
         graveyard graveyard1 = new graveyard(abandonedVillageMap, burialGroundMap);
@@ -101,7 +110,7 @@ public class Application {
         burialGroundMap.at(26, 11).setGround(graveyard4);
 
 
-
+        //run the game
         world.run();
     }
 }

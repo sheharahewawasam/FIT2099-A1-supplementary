@@ -1,4 +1,4 @@
-package game;
+package game.Actions;
 
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
@@ -6,12 +6,11 @@ import edu.monash.fit2099.engine.actors.attributes.ActorAttributeOperations;
 import edu.monash.fit2099.engine.actors.attributes.BaseActorAttributes;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.items.Item;
-import game.HealingVial;
-import game.Status;
+import game.items.RefreshingFlask;
 
 /**
  * An Action class representing the action of a player character consuming a RefreshingFlask item.
- * This action heals the actor and marks the RefreshingFlask as consumed.
+ * This action increases the actor's stamina and marks the RefreshingFlask as consumed.
  */
 public class ConsumeRefreshingFlaskAction extends Action {
 
@@ -24,14 +23,14 @@ public class ConsumeRefreshingFlaskAction extends Action {
      */
     @Override
     public String execute(Actor actor, GameMap map) {
-        // Get the actor's current health and maximum stamina attributes
+        // Get the actor's current stamina and maximum stamina attributes
         int currentStamina = actor.getAttribute(BaseActorAttributes.STAMINA);
         int maxStamina = actor.getAttributeMaximum(BaseActorAttributes.STAMINA);
 
-        // Calculate the number of health points to heal (20% of max stamina)
+        // Calculate the number of stamina points to heal (20% of max stamina)
         int StaminaPoints = (int) Math.ceil(maxStamina * 0.2);
 
-        // Ensure that healing does not exceed maximum stamina
+        // Ensure that increasing actor's stamina does not exceed maximum stamina
         if (currentStamina + StaminaPoints > maxStamina) {
             StaminaPoints = maxStamina - currentStamina;
         }
@@ -47,7 +46,7 @@ public class ConsumeRefreshingFlaskAction extends Action {
             }
         }
 
-        // Return a message indicating the healing amount
+        // Return a message indicating the increased stamina amount
         return actor + " is healed by " + StaminaPoints + " points";
     }
 

@@ -1,11 +1,11 @@
-package game;
+package game.Actions;
 
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.actors.attributes.BaseActorAttributes;
 import edu.monash.fit2099.engine.actors.attributes.ActorAttributeOperations;
-import game.Broadsword;
+import game.Weapons.Broadsword;
 
 /**
  * An action class representing the activation of the "Focus" skill for the Broadsword weapon.
@@ -31,7 +31,7 @@ public class ActivateFocusAction extends Action {
      */
     @Override
     public String execute(Actor actor, GameMap map) {
-
+        // Activate the "Focus" skill for the Broadsword
         broadsword.activate();
 
         // Reduce player's stamina by 20% of maximum stamina
@@ -39,6 +39,7 @@ public class ActivateFocusAction extends Action {
         int staminaToReduce = (int) Math.ceil(maxStamina * 0.2); // 20% of maximum stamina
         actor.modifyAttribute(BaseActorAttributes.STAMINA, ActorAttributeOperations.DECREASE, staminaToReduce);
 
+        // Provide a description of the action's outcome
         return actor + " takes a deep breath and focuses all their might!";
     }
 

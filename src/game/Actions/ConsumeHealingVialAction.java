@@ -1,12 +1,11 @@
-package game;
+package game.Actions;
 
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.actors.attributes.BaseActorAttributes;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.items.Item;
-import game.HealingVial;
-import game.Status;
+import game.items.HealingVial;
 
 /**
  * An Action class representing the action of a player character consuming a Healing Vial item.

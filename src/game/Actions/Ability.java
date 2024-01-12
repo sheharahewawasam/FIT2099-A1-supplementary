@@ -1,4 +1,4 @@
-package game;
+package game.Actions;
 
 /**
  * Use this enum to represent abilities.

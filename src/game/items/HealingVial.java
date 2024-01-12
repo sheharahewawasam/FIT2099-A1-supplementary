@@ -1,4 +1,4 @@
-package game;
+package game.items;
 
 import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actors.Actor;
@@ -6,21 +6,23 @@ import edu.monash.fit2099.engine.actors.attributes.BaseActorAttributes;
 import edu.monash.fit2099.engine.items.DropAction;
 import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.items.PickUpAction;
+import game.Actions.ConsumeHealingVialAction;
+import game.Actions.Status;
 
 public class HealingVial extends Item {
     /**
-     * Constructor for the OldKey class.
-     * Initializes an Old Key object with the name "Old Key", display character '-', and stackable as true.
+     * Constructor for the HealingVial class.
+     * Initializes a Healing Vial object with the name "Healing Vial", display character 'a', and stackable as true.
      */
     public HealingVial() {
         super("HealingVial", 'a', true);
     }
 
     /**
-     * Retrieves the PickUpAction for this Old Key when an actor tries to pick it up.
+     * Retrieves the PickUpAction for this Healing Vial when an actor tries to pick it up.
      *
-     * @param actor The actor attempting to pick up the Old Key.
-     * @return A PickUpAction if the actor is allowed to pick up the Old Key, null otherwise.
+     * @param actor The actor attempting to pick up the Healing Vial.
+     * @return A PickUpAction if the actor is allowed to pick up the Healing Vial, null otherwise.
      */
     @Override
     public PickUpAction getPickUpAction(Actor actor) {

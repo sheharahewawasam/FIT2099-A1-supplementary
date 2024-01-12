@@ -1,4 +1,4 @@
-package game;
+package game.actors;
 
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actions.ActionList;
@@ -10,15 +10,21 @@ import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
 import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
+import game.Actions.AttackAction;
+import game.Actions.DefeatRewarder;
+import game.items.HealingVial;
+import game.Actions.Status;
+import game.behaviour.AttackBehaviour;
+import game.behaviour.WanderBehaviour;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class WanderingUndead extends Actor implements DefeatRewarder {
+public class Hollowsoilder extends Actor implements DefeatRewarder {
     private Map<Integer, Behaviour> behaviours = new HashMap<>();
 
-    public WanderingUndead() {
-        super("Wandering Undead", 't', 100);
+    public Hollowsoilder() {
+        super("Hollowsoilder", 't', 100);
         this.behaviours.put(999, new WanderBehaviour());
         this.behaviours.put(998, new AttackBehaviour());
     }
@@ -60,29 +66,20 @@ public class WanderingUndead extends Actor implements DefeatRewarder {
     }
     @Override
     public IntrinsicWeapon getIntrinsicWeapon() {//Enemy damage to player
-        return new IntrinsicWeapon(30, "punches", 50);// public IntrinsicWeapon(int damage, String verb, int hit rate(accuracy))
+        return new IntrinsicWeapon(50, "kicks", 50);// public IntrinsicWeapon(int damage, String verb, int hit rate(accuracy))
     }
     @Override
     public String onDeath(Actor actor, GameMap map) {
         Location targetLocation = map.locationOf(this);
         String message = "";
 
-        if (Math.random() < 0.20) {
-            // 20% chance: Drop a healing vial
+        if (Math.random() < 0.2) {
+            // 20% chance: Drop a healing vial (assuming you have a HealingVial class)
             Item healingVial = new HealingVial();
             targetLocation.addItem(healingVial);
             message += healingVial + " has been dropped!";
         }
 
-        if (Math.random() < 0.25) {
-            // 25% chance: Drop an Old Key
-            Item key = new OldKey();
-            targetLocation.addItem(key);
-            message += key + " has been dropped!";
-        }
-
-
-        return "\n" + this.unconscious(actor, map) + "\n" + message;
+        return this.unconscious(actor, map) + "\n" + message;
     }
-
 }

@@ -1,4 +1,4 @@
-package game;
+package game.Actions;
 
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
@@ -54,17 +54,22 @@ public class AttackAction extends Action {
 
     @Override
     public String execute(Actor actor, GameMap map) {
+        // Check if a specific weapon is used, otherwise use intrinsic weapon
         if (weapon == null) {
             weapon = actor.getIntrinsicWeapon();
         }
 
+        // Check if the attack hits based on the weapon's chanceToHit
         if (!(rand.nextInt(100) <= weapon.chanceToHit())) {
             return actor + " misses " + target + ".";
         }
 
+        // Calculate damage and perform the attack
         int damage = weapon.damage();
         String result = actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.";
         target.hurt(damage);
+
+        // Check if the target is unconscious and update result accordingly
         if (!target.isConscious()) {
             result += "\n" + target.unconscious(actor, map);
         }

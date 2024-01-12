@@ -1,4 +1,4 @@
-package game;
+package game.items;
 
 import edu.monash.fit2099.engine.actions.ActionList;
 import edu.monash.fit2099.engine.actors.Actor;
@@ -6,11 +6,13 @@ import edu.monash.fit2099.engine.actors.attributes.BaseActorAttributes;
 import edu.monash.fit2099.engine.items.DropAction;
 import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.items.PickUpAction;
+import game.Actions.ConsumeRefreshingFlaskAction;
+import game.Actions.Status;
 
 public class RefreshingFlask extends Item {
     /**
      * Constructor for the OldKey class.
-     * Initializes an Old Key object with the name "Old Key", display character '-', and stackable as true.
+     * Initializes an Old Key object with the name "Old Key", display character 'u', and portable as true.
      */
     public RefreshingFlask() {
         super("RefreshingFlask", 'u', true);

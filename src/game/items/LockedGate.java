@@ -1,6 +1,4 @@
-package game;
-
-import java.util.List;
+package game.items;
 
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actions.ActionList;
@@ -8,40 +6,18 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.Ground;
 import edu.monash.fit2099.engine.positions.Location;
-import game.Status;
-import game.OpenLockedGateBGAction;
-import game.Player;
+import game.Actions.OpenLockedGateAction;
+import game.Actions.Status;
+import game.actors.Player;
 
-/**
- * A class that represents a LockedGate ground.
- * LockedGate is a type of Ground that can only be entered if it has the UNLOCKED capability.
- * It provides actions to unlock the gate and transition to another map.
- * Created by:
- * Riordan D. Alfredo
- * Modified by:
- *
- * @see Ground
- */
-public class LockedGateBG extends Ground {//New Locked Gate to Burial Ground Map created from Ancient Woods
+import java.util.List;
 
+public class LockedGate extends Ground {
     private Action mapTransitionAction;
-
-    /**
-     * Constructor for the LockedGate class.
-     * Initializes a LockedGate object with the display character '='.
-     */
-    public LockedGateBG() {
+    public LockedGate() {
         super('=');
-    }// Symbol given for Gate which is =
-
-    /**
-     * Adds a map transition action for the LockedGate.
-     *
-     * @param newAction The Action to set as the map transition action.
-     */
-    public void addMapTransitionAction(Action newAction) {
-        this.mapTransitionAction = newAction;
     }
+
 
     /**
      * Determines whether an actor can enter this LockedGate ground.
@@ -49,6 +25,7 @@ public class LockedGateBG extends Ground {//New Locked Gate to Burial Ground Map
      * @param actor The actor that wants to enter.
      * @return True if the gate has the UNLOCKED capability, allowing the actor to enter; otherwise, false.
      */
+
     @Override
     public boolean canActorEnter(Actor actor) {
         return this.hasCapability(Status.UNLOCKED);
@@ -74,10 +51,9 @@ public class LockedGateBG extends Ground {//New Locked Gate to Burial Ground Map
 
                 // Check if the actor is an instance of Player
                 if (actor1 instanceof Player) {
-                    //// Add the capability to indicate that the player is nearby the gate and whether the player can enter the gate or not.It also checks whether the key is present or not.
+                    // Add the capability to indicate that the player is nearby the gate
                     if (actor.hasCapability(Status.HAS_KEY) && !this.hasCapability(Status.UNLOCKED)) {
-                        actions.add(new OpenLockedGateBGAction());
-
+                        actions.add(new OpenLockedGateAction());
                     } else if (this.hasCapability(Status.UNLOCKED)) {
                         actions.add(mapTransitionAction);
                         break;

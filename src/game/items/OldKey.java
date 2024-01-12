@@ -1,10 +1,10 @@
-package game;
+package game.items;
 
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.items.DropAction;
 import edu.monash.fit2099.engine.items.Item;
 import edu.monash.fit2099.engine.items.PickUpAction;
-import game.Status;
+import game.Actions.Status;
 
 /**
  * A class that represents an Old Key item.
@@ -23,7 +23,7 @@ public class OldKey extends Item {
      */
     public OldKey() {
         super("Old Key", '-', true);
-    }
+    }// Old Key is represented by the '-' character and is portable
 
     /**
      * Retrieves the PickUpAction for this Old Key when an actor tries to pick it up.
@@ -33,7 +33,7 @@ public class OldKey extends Item {
      */
     @Override
     public PickUpAction getPickUpAction(Actor actor) {
-        actor.addCapability(Status.HAS_KEY);
+        actor.addCapability(Status.HAS_KEY);// Add the 'HAS_KEY' capability to the actor
         return super.getPickUpAction(actor);
     }
 

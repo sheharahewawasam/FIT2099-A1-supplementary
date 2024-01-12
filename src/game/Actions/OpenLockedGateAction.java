@@ -1,12 +1,11 @@
-package game;
+package game.Actions;
 
 import edu.monash.fit2099.engine.actions.Action;
 import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.Exit;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.Location;
-import game.LockedGate;
-import game.Status;
+import game.items.LockedGate;
 
 import java.util.List;
 
@@ -14,7 +13,7 @@ import java.util.List;
  * An Action class representing the action of an Actor opening a locked gate on a GameMap.
  * This action unlocks the gate by adding the UNLOCKED capability to the LockedGate ground.
  */
-public class OpenLockedGateBGAction extends Action {
+public class OpenLockedGateAction extends Action {
 
     /**
      * Executes the action of opening a locked gate.
@@ -31,7 +30,7 @@ public class OpenLockedGateBGAction extends Action {
         // Find the exit that leads to the LockedGate ground and unlock it
         for (Exit exit : exits) {
             Location adjacentLocation = exit.getDestination();
-            if (adjacentLocation.getGround() instanceof LockedGateBG) {
+            if (adjacentLocation.getGround() instanceof LockedGate) {
                 // Add the UNLOCKED capability to the LockedGate ground
                 adjacentLocation.getGround().addCapability(Status.UNLOCKED);
                 break; // Assuming there is only one LockedGate to unlock
