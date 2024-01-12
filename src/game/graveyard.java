@@ -11,15 +11,23 @@ import java.util.Random;
 
 public class graveyard extends Ground {
     private Random random = new Random();
+    private GameMap abandonedVillage;
+    private GameMap burialGround;
 
-    public graveyard() {
+    public graveyard(GameMap abandonedVillage, GameMap burialGround) {
         super('n');
+        this.abandonedVillage = abandonedVillage;
+        this.burialGround = burialGround;
     }
 
     public void tick(Location location) {
-            if (this.random.nextInt(4) == 0 ) {
+            if (this.random.nextInt(4) == 0 && location.map().equals(abandonedVillage) ) {
                 getLocation(location).addActor(new WanderingUndead());
             }
+            if (this.random.nextInt(10) == 0 && location.map().equals(burialGround)) {
+                getLocation(location).addActor(new Hollowsoilder());
+            }
+
     }
 
     public Location getLocation(Location location) {
