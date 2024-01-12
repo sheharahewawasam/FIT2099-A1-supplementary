@@ -10,4 +10,7 @@ public enum Status {
     HOSTILE_TO_ENEMY,
     HAS_KEY,
     UNLOCKED,
+    HAS_HEALING_VIAL,
+    CONSUMED,
+    HAS_REFRESHING_FLASK,
 }
