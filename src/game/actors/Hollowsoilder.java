@@ -16,6 +16,7 @@ import game.items.HealingVial;
 import game.Actions.Status;
 import game.behaviour.AttackBehaviour;
 import game.behaviour.WanderBehaviour;
+import game.items.RefreshingFlask;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -78,6 +79,13 @@ public class Hollowsoilder extends Actor implements DefeatRewarder {
             Item healingVial = new HealingVial();
             targetLocation.addItem(healingVial);
             message += healingVial + " has been dropped!";
+        }
+
+        if (Math.random() < 0.30) {
+            // 30% chance: Drop a refreshingflask
+            Item refreshingflask = new RefreshingFlask();
+            targetLocation.addItem(refreshingflask);
+            message += refreshingflask + " has been dropped!";
         }
 
         return this.unconscious(actor, map) + "\n" + message;
