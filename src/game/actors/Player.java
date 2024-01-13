@@ -8,6 +8,7 @@ import edu.monash.fit2099.engine.actors.attributes.BaseActorAttribute;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.displays.Menu;
+import edu.monash.fit2099.engine.weapons.IntrinsicWeapon;
 import game.Actions.Ability;
 import game.Actions.Status;
 
@@ -62,6 +63,10 @@ public class Player extends Actor {
         } else {
             this.modifyAttribute(STAMINA, ActorAttributeOperations.UPDATE, maxStamina);
         }
+    }
+    @Override
+    public IntrinsicWeapon getIntrinsicWeapon() {//Players default fighting method
+        return new IntrinsicWeapon(15, "kicks", 80);//IntrinsicWeapon(damage,verb,hit rate)
     }
 
 }
