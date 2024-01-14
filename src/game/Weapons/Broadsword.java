@@ -43,6 +43,7 @@ public class Broadsword extends WeaponItem {
      */
     public void deactivate(){
         this.isActive=false;
+        this.skillTurnsLeft = 0; // Reset skill turns left
         updateDamageMultiplier(1.0F);
     }
     /**

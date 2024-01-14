@@ -35,6 +35,15 @@ public class LockedGateBG extends Ground {//New Locked Gate to Burial Ground Map
     }// Symbol given for Gate which is =
 
     /**
+     * Adds a map transition action for the LockedGate.
+     *
+     * @param newAction The Action to set as the map transition action.
+     */
+    public void addMapTransitionAction(Action newAction) {
+        this.mapTransitionAction = newAction;
+    }
+
+    /**
      * Determines whether an actor can enter this LockedGate ground.
      *
      * @param actor The actor that wants to enter.

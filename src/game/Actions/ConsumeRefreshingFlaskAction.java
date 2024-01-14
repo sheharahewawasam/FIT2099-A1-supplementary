@@ -47,7 +47,7 @@ public class ConsumeRefreshingFlaskAction extends Action {
         }
 
         // Return a message indicating the increased stamina amount
-        return actor + " is healed by " + StaminaPoints + " points";
+        return actor + " has his stamina increased by " + StaminaPoints + " points";
     }
 
     /**

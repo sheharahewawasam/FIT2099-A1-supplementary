@@ -18,6 +18,15 @@ public class LockedGate extends Ground {
         super('=');
     }
 
+    /**
+     * Adds a map transition action for the LockedGate.
+     *
+     * @param newAction The Action to set as the map transition action.
+     */
+    public void addMapTransitionAction(Action newAction) {
+        this.mapTransitionAction = newAction;
+    }
+
 
     /**
      * Determines whether an actor can enter this LockedGate ground.

@@ -3,6 +3,7 @@ package game;
 import java.util.Arrays;
 import java.util.List;
 
+import edu.monash.fit2099.engine.actions.MoveActorAction;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.FancyGroundFactory;
 import edu.monash.fit2099.engine.positions.GameMap;
@@ -81,6 +82,9 @@ public class Application {
         LockedGateBG lockedGate2 = new LockedGateBG();//Gate created for burialGroundMap to abandonedVillageMap
         abandonedVillageMap.at(29, 0).setGround(lockedGate1);//the x and y labels set for the gate to be implemented in map of abandonedVillageMap
         burialGroundMap.at(19, 0).setGround(lockedGate2);///the x and y labels set for the gate to be implemented in map of burialGroundMap
+
+        lockedGate1.addMapTransitionAction(new MoveActorAction(burialGroundMap.at(22, 6),"to Burial Ground"));//Locates the x-axis and y-axis of the player when it moves to burial ground.
+        lockedGate2.addMapTransitionAction(new MoveActorAction(abandonedVillageMap.at(29, 5), "to Abandoned Village"));//Locates the x-axis and y-axis of the player when it moves to abandonedVillageMap.
 
         // Display the game title with fancy messages
         for (String line : FancyMessage.TITLE.split("\n")) {
