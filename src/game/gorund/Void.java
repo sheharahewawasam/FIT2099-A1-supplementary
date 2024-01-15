@@ -5,6 +5,8 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.displays.Display;
 import edu.monash.fit2099.engine.positions.Ground;
 import edu.monash.fit2099.engine.positions.Location;
+import game.actors.Hollowsoilder;
+import game.actors.WanderingUndead;
 import game.display.FancyMessage;
 import game.actors.Player;
 
@@ -17,16 +19,16 @@ public class Void extends Ground {
     public void tick(Location location) {
         if (location.containsAnActor()) {
             Actor actor = location.getActor();
-            if (actor instanceof Player) {
+            if (!(actor instanceof Hollowsoilder) && !(actor instanceof WanderingUndead)) {
                 Display display = new Display();
                 display.println("\n");
                 for (String line : FancyMessage.YOU_DIED.split("\n")) {
                     display.println(line);
                 }
                 display.println("\n");
+                // Make the actor unconscious after displaying the message
+                actor.unconscious(location.map());
             }
-            // Make the actor unconscious after displaying the message
-            actor.unconscious(location.map());
         }
     }
 }
