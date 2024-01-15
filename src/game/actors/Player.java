@@ -34,7 +34,7 @@ public class Player extends Actor {
         super(name, displayChar, hitPoints);
         this.addCapability(Status.HOSTILE_TO_ENEMY);
         this.addCapability(Ability.CAN_ENTER_FLOOR);
-        this.addAttribute(STAMINA, new BaseActorAttribute(100));
+        this.addAttribute(STAMINA, new BaseActorAttribute(200));
     }
 
     @Override
