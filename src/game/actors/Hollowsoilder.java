@@ -25,7 +25,7 @@ public class Hollowsoilder extends Actor implements DefeatRewarder {
     private Map<Integer, Behaviour> behaviours = new HashMap<>();
 
     public Hollowsoilder() {
-        super("Hollowsoilder", 't', 100);
+        super("Hollowsoilder", '&', 200);
         this.behaviours.put(999, new WanderBehaviour());
         this.behaviours.put(998, new AttackBehaviour());
     }
@@ -74,7 +74,7 @@ public class Hollowsoilder extends Actor implements DefeatRewarder {
         Location targetLocation = map.locationOf(this);
         String message = "";
 
-        if (Math.random() < 0.2) {
+        if (Math.random() < 0.20) {
             // 20% chance: Drop a healing vial (assuming you have a HealingVial class)
             Item healingVial = new HealingVial();
             targetLocation.addItem(healingVial);
